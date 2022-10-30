@@ -1,0 +1,150 @@
+{% extends 'base/base.html' %} {% block content %}
+<h1>Alterar</h1>
+<div class="m-sm-4">
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Nome</label>
+      <input
+        class="form-control form-control-lg"
+        type="text"
+        name="nome"
+        maxlength="100"
+        required
+        id="id_nome"
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Telefone</label>
+      <input
+        class="form-control form-control-lg"
+        type="text"
+        name="telefone"
+        maxlength="16"
+        required
+        id="id_telefone"
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">CEP</label>
+      <input
+        class="form-control form-control-lg"
+        type="text"
+        name="cep"
+        maxlength="12"
+        required
+        id="id_cep"
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Endereço</label>
+      <input
+        class="form-control form-control-lg"
+        type="text"
+        name="endereco"
+        maxlength="100"
+        required
+        id="id_endereco"
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Número</label>
+      <input
+        class="form-control form-control-lg"
+        type="text"
+        name="numero"
+        maxlength="10"
+        required
+        id="id_numero"
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Cidade</label>
+      <input
+        class="form-control form-control-lg"
+        type="text"
+        name="cidade"
+        maxlength="40"
+        required
+        id="id_cidade"
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">UF</label>
+      <input
+        class="form-control form-control-lg"
+        type="text"
+        name="uf"
+        maxlength="2"
+        required
+        id="id_uf"
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Pais</label>
+      <input
+        class="form-control form-control-lg"
+        type="text"
+        name="pais"
+        maxlength="20"
+        required
+        id="id_pais"
+      />
+    </div>
+
+    <input type="submit" class="btn btn-primary mt-3" value="Salvar" />
+  </form>
+</div>
+<script>
+  function limpa_cep() {
+    document.getElementById("id_endereco").value = "";
+    document.getElementById("id_cidade").value = "";
+    document.getElementById("id_uf").value = "";
+    document.getElementById("id_pais").value = "";
+  }
+  function atualiza_campos(conteudo) {
+    if (!("erro" in conteudo)) {
+      document.getElementById("id_endereco").value = conteudo.logradouro;
+      document.getElementById("id_cidade").value = conteudo.localidade;
+      document.getElementById("id_uf").value = conteudo.uf;
+      document.getElementById("id_pais").value = "Brasil";
+    }
+    else {
+      limpa_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+  function verificacep(valor) {
+    var cep = valor.replace(/\D/g, "");
+    if (cep != "") {
+      var validacep = /^[0-9]{8}$/;
+      if (validacep.test(cep)) {
+        document.getElementById("id_endereco").value = "...";
+        document.getElementById("id_cidade").value = "...";
+        document.getElementById("id_uf").value = "...";
+        document.getElementById("id_pais").value = "...";
+        var script = document.createElement("script");
+        script.src =
+          "https://viacep.com.br/ws/" + cep + "/json/?callback=atualiza_campos";
+        document.body.appendChild(script);
+      }
+      else {
+        limpa_cep();
+        alert("Formato de CEP inválido.");
+      }
+    }
+    else {
+      limpa_cep();
+    }
+  }
+  let el = document.getElementById("id_cep");
+  el.addEventListener(
+    "blur",
+    () => verificacep((() => document.getElementById("id_cep").value)()),
+    false
+  );
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"></script>
+
+{% endblock %}

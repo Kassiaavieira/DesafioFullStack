@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Listar Pacientes{% endblock title %}
+
+{% block content %}
+
+<div>
+    <h4>Lista de Pacientes</h4>
+    <div>
+        <a href="/paciente/cadastrar" class="btn btn-primary">Cadastrar</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Endereço</th>
+              <th scope="col">Número</th>
+              <th scope="col">Cidade</th>
+              <th scope="col">UF</th>
+              <th scope="col">País</th>
+              <th scope="col">CEP</th>
+              <th scope="col">Alterar</th>
+              <th scope="col">Apagar</th>
+            </tr>
+          </thead>
+        {% for paciente in object_list %}
+        <tr>
+            <td>{{ paciente.id }}</td>
+            <td>{{ paciente.nome }}</td>
+            <td>{{ paciente.telefone }}</td>
+            <td>{{ paciente.endereco }}</td>
+            <td>{{ paciente.numero }}</td>
+            <td>{{ paciente.cidade }}</td>
+            <td>{{ paciente.uf }}</td>
+            <td>{{ paciente.pais }}</td>
+            <td>{{ paciente.cep }}</td>
+            <td><a href="/paciente/alterar/{{ paciente.id }}" class="btn btn-success">Alterar</a></td>
+            <td><a href="/paciente/apagar/{{ paciente.id }}" class="btn btn-danger">Apagar</a></td>
+        </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'base/base_login.html' %} {% block content %}
+
+{% load static %}
+<div class="m-sm-4">
+  <div class="text-center">
+    <img
+      src="{% static 'img/avatars/icon.png' %}"
+      alt="Charles Hall"
+      class="img-fluid rounded-circle"
+      width="132"
+      height="132"
+    />
+  </div>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input class="form-control form-control-lg" type="email" name="login" placeholder="Endereço de e-mail" autocomplete="email" required="" id="id_login">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Senha</label>
+      <input class="form-control form-control-lg" type="password" name="password" placeholder="Senha" autocomplete="current-password" required="" id="id_password">
+    </div>
+    <div>
+      <a href="/accounts/signup/">Registre-se</a>
+    </div>
+    <div class="text-center mt-3">
+      <input class="btn btn-lg btn-primary" type="submit" value="Entrar">
+      <!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
+    </div>
+  </form>
+</div>
+{% endblock %}

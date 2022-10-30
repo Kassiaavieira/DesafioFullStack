@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Listar Pacientes{% endblock title %}
+
+{% block content %}
+
+<div>
+    <h4>Lista de Pacientes</h4>
+    <div>
+        <a href="/agendamento/cadastrar" class="btn btn-primary">Cadastrar</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Status</th>
+              <th scope="col">Medico</th>
+              <th scope="col">Paciente</th>
+              <th scope="col">Alterar</th>
+              <th scope="col">Apagar</th>
+            </tr>
+          </thead>
+        {% for agendamento in object_list %}
+        <tr>
+            <td>{{ agendamento.id }}</td>
+            <td>{{ agendamento.descricao }}</td>
+            <td>{{ agendamento.status }}</td>
+            <td>{{ agendamento.medico }}</td>
+            <td>{{ agendamento.paciente }}</td>
+            <td><a href="/agendamento/alterar/{{ agendamento.id }}" class="btn btn-success">Alterar</a></td>
+            <td><a href="/agendamento/apagar/{{ agendamento.id }}" class="btn btn-danger">Apagar</a></td>
+        </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
