@@ -14,9 +14,6 @@
 # Clone este repositório
 $ git clone <https://github.com/Kassiaavieira/desafioFullStack.git>
 
-# Acesse a pasta do projeto no terminal/cmd
-$ cd .\medicalsys\
-
 # Instale o django (windows)
 $ py -m pip install Django
 
