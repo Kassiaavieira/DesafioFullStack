@@ -14,23 +14,23 @@
 # Clone este repositório
 $ git clone <https://github.com/Kassiaavieira/desafioFullStack.git>
 
-# Acesse a pasta do projeto no terminal/cmd
-$ cd .\medicalsys\
-
-# Instale o django (windows)
-$ py -m pip install Django
-
 # Crie o ambiente virtual
 $ python -m venv venv
 
 # Ative o ambiente virtual
 $ venv\Scripts\activate
 
-# Atualize o pip
-$ python -m pip install --upgrade pip
+# Instale o django (windows)
+$ py -m pip install Django
+
+# Instale as dependências
+$ pip freeze > requirements.txt
 
 # Instale as dependências
 $ pip install -r requirements.txt
+
+# Autenticação
+$ pip install django-allauth
 
 # Criação das migrations
 $ python manage.py migrate
