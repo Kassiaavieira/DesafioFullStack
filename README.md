@@ -20,17 +20,8 @@ $ python -m venv venv
 # Ative o ambiente virtual
 $ venv\Scripts\activate
 
-# Instale o django (windows)
-$ py -m pip install Django
-
-# Instale as dependências
-$ pip freeze > requirements.txt
-
 # Instale as dependências
 $ pip install -r requirements.txt
-
-# Autenticação
-$ pip install django-allauth
 
 # Criação das migrations
 $ python manage.py migrate
